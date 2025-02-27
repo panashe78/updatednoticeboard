@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('event_date');
             $table->longText('description');
             $table->string('profile_photo');
-            $table->foreignId('user_id');
+        
             $table->timestamps();
         });
     }
