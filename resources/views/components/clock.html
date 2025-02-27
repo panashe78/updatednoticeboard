@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Mode</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .text-center {
+            max-width: 600px; /* Limit the width for better readability */
+        }
+
+        .icon {
+            font-size: 2em; /* Adjusted icon size for better balance */
+            color: #007bff; /* Bootstrap primary color */
+            vertical-align: middle; /* Align icon with text */
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Adjusted heading size */
+        }
+
+        .lead {
+            font-size: 1.25rem; /* Slightly larger lead paragraph */
+        }
+
+        .countdown {
+            font-size: 1.75rem; /* Adjusted countdown size */
+            margin-top: 20px;
+        }
+
+        /* Justify text */
+        .text-justify {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-center text-justify">
+        <h1 class="mb-4"><i class="bi bi-tools icon"></i> We'll Be Back Shortly!</h1>
+        <p class="lead mb-3"><i class="bi bi-clock icon"></i> Our servers are currently undergoing essential maintenance and updates to enhance your experience.</p>
+        <p class="mb-3"><i class="bi bi-exclamation-circle icon"></i> This maintenance will primarily affect newly hosted sites, as they are not yet cached across our network.</p>
+        <p class="mb-4"><i class="bi bi-hourglass-split icon"></i> We estimate that your website will be back online in approximately <span id="estimated-time">55 hours</span>. Thank you for your patience and understanding during this process.</p>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script>
+        // Generate a random countdown time between 1 second and 55 hours
+        const randomHours = Math.floor(Math.random() * 55) + 1; // Random hours (1 to 55)
+        let countdownTime = randomHours * 60 * 60; // Convert hours to seconds
+
+        // Set the dynamic estimated time in the message
+        document.getElementById('estimated-time').textContent = `${randomHours} hours`;
+
+        const countdownElement = document.getElementById('countdown');
+
+        // Update the countdown every second
+        const interval = setInterval(() => {
+            const hours = Math.floor(countdownTime / 3600);
+            const minutes = Math.floor((countdownTime % 3600) / 60);
+            const seconds = countdownTime % 60;
+
+            // Display the result
+            countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+
+            // Decrease the countdown time by one second
+            countdownTime--;
+
+            // If the countdown is over, display a message
+            if (countdownTime < 0) {
+                clearInterval(interval);
+                countdownElement.textContent = "We are back online!";
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
