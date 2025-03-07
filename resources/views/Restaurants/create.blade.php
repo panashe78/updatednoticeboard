@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body style="background-color: black">
+<body style="background-color: white">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -76,94 +76,185 @@
         }
     </style>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <h1 style="color: red">Create Restaurant</h1>
+
     
     <form action="{{ route('restaurants.store') }}" method="POST" enctype="multipart/form-data" class="container mt-4">
         @csrf
-        <div class="form-group">
-            <label for="name"><i class="fas fa-utensils"></i> Name</label>
-            <input type="text" name="name" class="form-control" placeholder="Name" required>
-        </div>
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h2 class="card-title mb-4 text-center">Create a New Restaurant</h2>
     
-        <div class="form-group">
-            <label for="profile_photo"><i class="fas fa-image"></i> Profile Photo</label>
-            <input type="file" name="profile_photo" class="form-control-file" required>
-        </div>
+                <!-- Name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label"><i class="fas fa-utensils me-2"></i>Name</label>
+                    <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter restaurant name" required>
+                </div>
     
-        <div class="form-group">
-            <label for="rating"><i class="fas fa-star"></i> Rating (1-5)</label>
-            <input type="number" name="rating" class="form-control" placeholder="Rating (1-5)" min="1" max="5" required>
-        </div>
+                <!-- Cover Photo -->
+                <div class="mb-3">
+                    <label for="profile_photo" class="form-label"><i class="fas fa-image me-2"></i>Cover Photo</label>
+                    <div class="file-upload-container">
+                        <input type="file" name="profile_photo" id="profile_photo" class="form-control-file" required hidden>
+                        <label for="profile_photo" class="file-upload-label">
+                            <div class="file-upload-design">
+                                <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+                                <p class="mb-1">Drag & drop your image here</p>
+                                <p class="text-muted">or <span class="file-upload-browse">browse</span> to upload</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
     
-        <div class="form-group">
-            <label for="city"><i class="fas fa-map-marker-alt"></i> City</label>
-            <input type="text" name="city" class="form-control" placeholder="City" required>
-        </div>
+                <!-- Rating -->
+                <div class="mb-3">
+                    <label for="rating" class="form-label"><i class="fas fa-star me-2"></i>Rating (1-5)</label>
+                    <input type="number" name="rating" class="form-control form-control-lg" placeholder="Enter rating (1-5)" min="1" max="5" required>
+                </div>
     
-        <div class="form-group">
-            <label for="phone_number"><i class="fas fa-phone"></i> Phone Number</label>
-            <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" required>
-        </div>
+                <!-- City -->
+                <div class="mb-3">
+                    <label for="city" class="form-label"><i class="fas fa-map-marker-alt me-2"></i>City</label>
+                    <select name="city" id="city" class="form-select form-select-lg" required>
+                        <option value="Harare">Harare</option>
+                        <option value="Mutare">Mutare</option>
+                        <option value="Gweru">Gweru</option>
+                        <option value="Bulawayo">Bulawayo</option>
+                    </select>
+                </div>
     
-        <div class="form-group">
-            <label for="website"><i class="fas fa-globe"></i> Website</label>
-            <input type="url" name="website" class="form-control" placeholder="Website">
-        </div>
+                <!-- Phone Number -->
+                <div class="mb-3">
+                    <label for="phone_number" class="form-label"><i class="fas fa-phone me-2"></i>Phone Number</label>
+                    <input type="text" name="phone_number" class="form-control form-control-lg" placeholder="Enter phone number" required>
+                </div>
     
-        <div class="form-group">
-            <label for="average_price"><i class="fas fa-dollar-sign"></i> Average Price</label>
-            <input type="number" name="average_price" class="form-control" placeholder="Average Price" required>
-        </div>
+                <!-- Website -->
+                <div class="mb-3">
+                    <label for="website" class="form-label"><i class="fas fa-globe me-2"></i>Website</label>
+                    <input type="url" name="website" class="form-control form-control-lg" placeholder="Enter website URL">
+                </div>
     
-        <div class="form-group">
-            <label for="opening_hours"><i class="fas fa-clock"></i> Opening Hours</label>
-            <input type="time" name="opening_hours" class="form-control" required>
-        </div>
+                <!-- Average Price -->
+                <div class="mb-3">
+                    <label for="average_price" class="form-label"><i class="fas fa-dollar-sign me-2"></i>Average Price</label>
+                    <input type="number" name="average_price" class="form-control form-control-lg" placeholder="Enter average price" required>
+                </div>
     
-        <div class="form-group">
-            <label for="category"><i class="fas fa-tags"></i> Category</label>
-            <input type="text" name="category" class="form-control" placeholder="Category" required>
-        </div>
+                <!-- Opening Hours -->
+                <div class="mb-3">
+                    <label for="opening_hours" class="form-label"><i class="fas fa-clock me-2"></i>Opening Hours</label>
+                    <input type="time" name="opening_hours" class="form-control form-control-lg" required>
+                </div>
     
-        <div class="form-group">
-            <label for="description"><i class="fas fa-list"></i> Description</label>
-            <select name="description" id="description" class="form-control" required>
-                <option value="chillspot">Chill Spot</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="bar">Bar</option>
-                <option value="fast food restaurant">Fast Food Restaurant</option>
-                <option value="chilspot">Chill Spot</option>
-            </select>
-        </div>
+                <!-- Category -->
+                <div class="mb-3">
+                    <label for="category" class="form-label"><i class="fas fa-tags me-2"></i>Category</label>
+                    <input type="text" name="category" class="form-control form-control-lg" placeholder="Enter category" required>
+                </div>
     
-        <div class="form-group">
-            <label for="cuisine"><i class="fas fa-utensil-spoon"></i> Cuisine</label>
-            <select name="address" id="cuisine" class="form-control" required>
-                <option value="">Select Cuisine</option>
-                <option value="Italian">Italian</option>
-                <option value="Chinese">Chinese</option>
-                <option value="Mexican">Mexican</option>
-                <option value="Indian">Indian</option>
-                <option value="Thai">Thai</option>
-                <option value="French">French</option>
-                <option value="Japanese">Japanese</option>
-                <option value="Mediterranean">Mediterranean</option>
-                <option value="Spanish">Spanish</option>
-                <option value="American">American</option>
-                <option value="Vietnamese">Vietnamese</option>
-                <option value="Korean">Korean</option>
-                <option value="Lebanese">Lebanese</option>
-            </select>
-        </div>
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="description" class="form-label"><i class="fas fa-list me-2"></i>Description</label>
+                    <select name="description" id="description" class="form-select form-select-lg" required>
+                        <option value="accommodation">Accommodation</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="business">businesses</option>
+                    </select>
+                </div>
     
-        <div class="form-group">
-            <label for="email"><i class="fas fa-envelope"></i> Email</label>
-            <input type="email" name="email" class="form-control" placeholder="Email" required>
-        </div>
+                <!-- Cuisine -->
+                <div class="mb-3">
+                    <label for="cuisine" class="form-label"><i class="fas fa-utensil-spoon me-2"></i>Cuisine</label>
+                    <select name="address" id="cuisine" class="form-select form-select-lg" required>
+                        <option value="">Select Cuisine</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Thai">Thai</option>
+                        <option value="French">French</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Mediterranean">Mediterranean</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="American">American</option>
+                        <option value="Vietnamese">Vietnamese</option>
+                        <option value="Korean">Korean</option>
+                        <option value="Lebanese">Lebanese</option>
+                    </select>
+                </div>
     
-        <button type="submit" class="btn btn-danger"><i class="fas fa-plus"></i> Create</button>
+                <!-- Email -->
+                <div class="mb-4">
+                    <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter email" required>
+                </div>
+    
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-plus me-2"></i>Create</button>
+                </div>
+            </div>
+        </div>
     </form>
     
+    <!-- Custom CSS for Modern Look -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            border-radius: 15px;
+        }
+        .form-control-lg, .form-select-lg {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+        }
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .file-upload-container {
+            border: 2px dashed #0d6efd;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        .file-upload-container:hover {
+            border-color: #0b5ed7;
+            background-color: #e9f0ff;
+        }
+        .file-upload-label {
+            cursor: pointer;
+            display: block;
+        }
+        .file-upload-design {
+            color: #0d6efd;
+        }
+        .file-upload-design i {
+            color: #0d6efd;
+        }
+        .file-upload-browse {
+            color: #0d6efd;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+        .file-upload-browse:hover {
+            color: #0b5ed7;
+        }
+        #profile_photo:focus + .file-upload-label .file-upload-container {
+            border-color: #0b5ed7;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+    </style>
     <style>
         .form-group label {
             font-weight: bold;

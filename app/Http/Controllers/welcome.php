@@ -14,29 +14,117 @@ class welcome extends Controller
     {
         $restaurants = DB::table('restaurants')
                        ->where('approval', true)
+                       ->where('description','business')
+                       ->paginate(8);
+
+        $hrestaurants = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','business')
+                       ->where('city','Harare')
+                       ->paginate(8);
+
+        $brestaurants = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','business')
+                       ->where('city','Bulawayo')
+                       ->paginate(8);
+
+        $mrestaurants = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','business')
+                       ->where('city','Mutare')
+                       ->paginate(8);
+
+        $grestaurants = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','business')
+                       ->where('city','Gweru')
+                       ->paginate(8);
+
+        $hbars = DB::table('restaurants')
+                       ->where('approval', true)
                        ->where('description','restaurant')
-                       ->paginate(4);
+                       ->where('city','Harare')
+                       ->paginate(8);
+
+        $mbars = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','restaurant')
+                       ->where('city','Mutare')
+                       ->paginate(8);
+
+        $bbars = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','restaurant')
+                       ->where('city','Bulawayo')
+                       ->paginate(8);
+
+        $gbars = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','restaurant')
+                       ->where('city','Gweru')
+                       ->paginate(8);
 
         $bars = DB::table('restaurants')
-            ->where('approval', true)
-            ->where('description','bar')
-                ->paginate(4);
+                       ->where('approval', true)
+                       ->where('description','restaurant')
+                       ->paginate(8);
 
-        $fastfood = DB::table('restaurants')
-                    ->where('description','fast food restaurant')
-                    ->where('approval', true)
-                    ->paginate(4);
-        $chilspot = DB::table('restaurants')
-                    ->where('approval', true)
-                    ->where('description','chilspot')
-                    ->paginate(4);
+        $hbars = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','restaurant')
+                       ->where('city','Harare')
+                       ->paginate(12);
 
+        $hacco = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','accommodation')
+                       ->where('city','Harare')
+                       ->paginate(12);
+
+        $macco = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','accommodation')
+                       ->where('city','Mutare')
+                       ->paginate(8);
+
+        $bacco = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','accommodation')
+                       ->where('city','Bulawayo')
+                       ->paginate(8);
+
+        $gacco = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','accommodation')
+                       ->where('city','Gweru')
+                       ->paginate(8);
+
+        $bars = DB::table('restaurants')
+                       ->where('approval', true)
+                       ->where('description','accommodation')
+                       ->paginate(8);
+
+                       
+       
                     
         return view('welcome', [
             'restaurants' => $restaurants,
             'bars' => $bars,
-            'fastfood' => $fastfood,
-            'chilspot' => $chilspot,
+            'mrestaurants' => $mrestaurants,
+            'hrestaurants' => $hrestaurants,
+            'brestaurants' => $brestaurants,
+            'grestaurants' => $grestaurants, 
+            'hbars' => $hbars,
+            'mbars' => $mbars, 
+            'bbars' => $bbars,
+            'gbars' => $gbars, 
+            'hacco' => $hacco,  
+            'macco' => $macco,
+            'bacco' => $bacco,
+            'gacco' => $gacco,
+
+
         ]);
     }
 

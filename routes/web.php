@@ -36,6 +36,25 @@ use App\Http\Controllers\RestaurantController;
 Route::get('/restaurants/search', [RestaurantController::class, 'search'])->name('restaurants.search');
 Route::post('/approve-restaurant/{id}', [RestaurantController::class, 'approve'])->name('approve.restaurant');
 
+Route::get('/business', function () {
+    return view('restaurants.create2');
+});
+Route::get('/accommodation', function () {
+    return view('restaurants.create3');
+});
+Route::get('/event', function () {
+    return view('restaurants.create4');
+});
+
+
+Route::get('/eve', function () {
+    return view('restaurants.event');
+});
+
+Route::get('/busi', function () {
+    return view('restaurants.business');
+});
+
 
 Route::resource('restaurants', RestaurantController::class);
 
@@ -130,3 +149,30 @@ use App\Http\Controllers\EventController;
 
 Route::post('/approve-event/{id}', [EventController::class, 'approve'])->name('approve.event');
 Route::post('/reject-event/{id}', [EventController::class, 'reject'])->name('reject.event');
+
+use App\Http\Controllers\DonationController;
+
+Route::get('/donate', [DonationController::class, 'showDonationForm'])->name('donation.form');
+Route::post('/donate', [DonationController::class, 'processDonation'])->name('donation.process');
+Route::get('/donation/success', [DonationController::class, 'donationSuccess'])->name('donation.success');
+Route::get('/donation/cancel', [DonationController::class, 'donationCancel'])->name('donation.cancel');
+
+use App\Http\Controllers\SearchController;
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+
+
+// Other routes...
+
+Route::get('/restaurants/{restaurant}/event', [RestaurantController::class, 'event'])->name('restaurants.event');
+Route::get('/restaurants/{restaurant}/business', [RestaurantController::class, 'business'])->name('restaurants.business');
+Route::get('/restaurants/{restaurant}/accommodation', [RestaurantController::class, 'accommodation'])->name('restaurants.accommodation');
+Route::get('/restaurants/{restaurant}/restaurant', [RestaurantController::class, 'restaurant'])->name('restaurants.restaurant');
+Route::get('/acco', [RestaurantController::class, 'indexacco'])->name('restaurants.show-accommodation');
+Route::get('/eve', [RestaurantController::class, 'indexeve'])->name('restaurants.show-event');
+Route::get('/bus', [RestaurantController::class, 'indexbus'])->name('restaurants.show-business');
+Route::get('/rest', [RestaurantController::class, 'indexrest'])->name('restaurants.show-restaurant');
+
+
+

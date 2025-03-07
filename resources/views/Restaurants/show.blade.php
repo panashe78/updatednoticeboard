@@ -25,6 +25,20 @@
   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="/css1/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="/css1/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css1/elegant-icons.css" type="text/css">
+  <link rel="stylesheet" href="/css1/flaticon.css" type="text/css">
+  <link rel="stylesheet" href="/css1/nice-select.css" type="text/css">
+  <link rel="stylesheet" href="/css1/barfiller.css" type="text/css">
+  <link rel="stylesheet" href="/css1/magnific-popup.css" type="text/css">
+  <link rel="stylesheet" href="/css1/jquery-ui.min.css" type="text/css">
+  <link rel="stylesheet" href="/css1/owl.carousel.min.css" type="text/css">
+  <link rel="stylesheet" href="/css1/slicknav.min.css" type="text/css">
+  <link rel="stylesheet" href="/css1/style.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"> <!-- Example font -->
+  <link rel="stylesheet" href="path/to/bootstrap.css"> <!-- Bootstrap CSS -->
+
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
 <style>
@@ -56,39 +70,33 @@ button.delete-btn:hover {
   <!-- ======= Top Bar ======= -->
  
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-cente">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">{{ $restaurant->name }}</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="index.html" class="logo me-auto me-lg-0"><img src="/storage/{{ $restaurant->profile_photo }}" alt="" class="img-fluid"></a>
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          
-         
-          <li><form action="{{ route('restaurants.destroy', $restaurant) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="delete-btn">Delete</button>
-        </form></li>
-        <a href="{{ route('restaurants.edit', $restaurant) }}" ><button class="delete-btn">Edit</button></a>
-       
-         
-        
-          @auth
-          <li><a class="nav-link scrollto" href="/">{{ Auth::user()->name }}</a></li>
-            
-          @endauth
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-      
-      
-      
-     
+  <header class="header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: rgb(10, 10, 124); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+    <div class="container-fluid" style="padding-top: 0px; background-image: cover; background-position: center;" > <!-- Adjust padding for content visibility -->
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a href="./index.html"><img src="https://noticeboard.co.zw/wp-content/uploads/2023/08/noticeboard.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="header__nav">
+                    <nav class="header__menu mobile-menu" >
+                       
+                    </nav>
+                    <div class="header__menu__right">
+                        
+                        <a href="/restaurants/create" class="primary-btn"><i class="fa fa-plus"></i>Add Listing</a>
+                        
+                       
+                        <a href="/login" class="login-btn"><i class="fa fa-user"><b style="font-size: 10px"></i></a>
+                        <a href="/register" class="login-btn"><i class="fa fa-user-plus"><b style="font-size: 10px"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
     </div>
-  </header>
+</header>
   <!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
@@ -116,7 +124,7 @@ button.delete-btn:hover {
   <main id="main">    
 
      <!-- ======= Menu Section ======= -->
-     <section id="menu" class="menu section-bg">
+     <section id="menu" class="menu">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -142,7 +150,7 @@ button.delete-btn:hover {
 
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
             @foreach ($menus as $menu)
-            <div class="col-lg-6 menu-item dessert">
+            <div class="col-lg-6 dessert">
               <a href="{{ asset('storage/photos/' . $menu->photo) }}"> <img src="{{ asset('storage/photos/' . $menu->photo) }}"  alt="" class="menu-img" style="width: 60px; height: 60px; object-fit: cover; border-radius: 100%; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);"></a>
               <div class="menu-content">
                 <a href="#">{{ $menu->name }}</a><span>${{ $menu->price }}</span>
@@ -208,10 +216,7 @@ button.delete-btn:hover {
     </section><!-- End Menu Section -->
 
 
-    <div>
-      <h3>{{ $restaurant->name }}</h3>
-      <a href="{{ route('restaurants.gallery.create', $restaurant->id) }}" class="btn btn-primary">Add Gallery</a>
-  </div>
+   
 
     <!-- ======= Events Section ======= -->
     <section id="events" class="events">
@@ -251,11 +256,35 @@ button.delete-btn:hover {
         <li><i class="bi bi-check-circled"></i>  </li>
       </ul>
       <p>
-      
+        
+        @if (session('error'))
+            <div style="color: red;">{{ session('error') }}</div>
+        @endif
+        @if (session('success'))
+            <div style="color: green;">{{ session('success') }}</div>
+        @endif
+        <form action="{{ route('donation.process') }}" method="POST">
+            @csrf
+            <label for="amount"></label>
+            <input type="number" value="{{ $events->price }}" hidden name="amount" id="amount" step="0.01" min="1" required>
+            <button type="submit" style="background-color: #28a745; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: background-color 0.3s;"
+onmouseover="this.style.backgroundColor='#218838';"
+onmouseout="this.style.backgroundColor='#28a745';">
+Buy Ticket
+</button>
+        </form>
       </p>
     </div>
   </div>
 </div>
+
 @endforeach
             <!-- End testimonial item -->
 <div class="swiper-slide">
@@ -647,10 +676,7 @@ button.delete-btn:hover {
       </div>
     </div>
 
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>EateryExplorer</span></strong>. All Rights Reserved
-      </div>
+  
      
     </div>
   </footer><!-- End Footer -->
@@ -668,6 +694,17 @@ button.delete-btn:hover {
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+
+  <script src="js2/jquery-3.3.1.min.js"></script>
+  <script src="js2/bootstrap.min.js"></script>
+  <script src="js2/jquery.nice-select.min.js"></script>
+  <script src="js2/jquery-ui.min.js"></script>
+  <script src="js2/jquery.nicescroll.min.js"></script>
+  <script src="js2/jquery.barfiller.js"></script>
+  <script src="js2/jquery.magnific-popup.min.js"></script>
+  <script src="js2/jquery.slicknav.js"></script>
+  <script src="js2/owl.carousel.min.js"></script>
+  <script src="js2/main.js"></script>
 
 </body>
 

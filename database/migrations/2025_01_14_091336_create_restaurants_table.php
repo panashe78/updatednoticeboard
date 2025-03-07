@@ -25,6 +25,9 @@ return new class extends Migration
             $table->time('opening_hours');
             $table->string('description');
             $table->string('email');
+            $table->boolean('editors')->default(0);
+            $table->boolean('approval')->default(0);
+            $table->string('views')->default(0);
             $table->timestamps();
         });
     }

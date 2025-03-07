@@ -20,7 +20,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('profile_photo')->nullable();
+            $table->string('national_id_photo')->nullable();
+            $table->string('dob')->nullable();
+            $table->string('national_id_number')->nullable();
+            $table->string('role')->default('user');
             $table->timestamps();
         });
 

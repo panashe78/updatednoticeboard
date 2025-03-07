@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('event_id');
+            $table->string('ticket_number');
+            $table->string('quantity');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('f_a_q_s', function (Blueprint $table) {
             $table->id();
             $table->foreignId('restaurant_id');
+            $table->foreignId('user_id');
             $table->string('question');
             $table->string('answer');
             $table->timestamps();

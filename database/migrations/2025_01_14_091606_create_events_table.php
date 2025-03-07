@@ -19,6 +19,10 @@ return new class extends Migration
             $table->longText('description');
             $table->string('profile_photo');
             $table->foreignId('user_id');
+            $table->string('price');
+            $table->string('category');
+            $table->string('ticketPrice')->default(0);
+            $table->boolean('approved')->default(0);
             $table->timestamps();
         });
     }

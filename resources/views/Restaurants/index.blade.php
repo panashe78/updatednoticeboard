@@ -27,6 +27,21 @@
   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="css1/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css1/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="css1/elegant-icons.css" type="text/css">
+  <link rel="stylesheet" href="css1/flaticon.css" type="text/css">
+  <link rel="stylesheet" href="css1/nice-select.css" type="text/css">
+  <link rel="stylesheet" href="css1/barfiller.css" type="text/css">
+  <link rel="stylesheet" href="css1/magnific-popup.css" type="text/css">
+  <link rel="stylesheet" href="css1/jquery-ui.min.css" type="text/css">
+  <link rel="stylesheet" href="css1/owl.carousel.min.css" type="text/css">
+  <link rel="stylesheet" href="css1/slicknav.min.css" type="text/css">
+  <link rel="stylesheet" href="css1/style.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"> <!-- Example font -->
+  <link rel="stylesheet" href="path/to/bootstrap.css"> <!-- Bootstrap CSS -->
+
+
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
 
@@ -43,39 +58,33 @@
   <!-- ======= Top Bar ======= -->
  
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-cente">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-
-      
-     
-       <a href="index.html" class=""><img src="../images/bites n vibes logo.png" style="height: 150px; width:150px;" alt="" class="img-fluid"></a>
-
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto active" href="/">Home</a></li>  
-          <li><a class="nav-link scrollto" href="/dashboard">Dashboard</a></li>
-          <li><a class="nav-link scrollto" href="/restaurants">Explore</a></li>
-          <li><a class="nav-link scrollto" href="/toppicks">Deals & Offers</a></li>
-          <li><a class="nav-link scrollto" href="/vibesandevents">Vibes & Events</a></li>
-          
-          <li><a class="nav-link scrollto" href="/lifestyle"><form method="POST" action="{{ route('logout') }}">
-            @csrf
-            
-        </form></a></li>
-       
-         
-         
-          @auth
-          <li><a class="nav-link scrollto" href="user/profile">{{ Auth::user()->name }}</a></li>
-            
-          @endauth
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-      
-
+  <header class="header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: rgb(10, 10, 124); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+    <div class="container-fluid" style="padding-top: 0px; background-image: cover; background-position: center;" > <!-- Adjust padding for content visibility -->
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a href="./index.html"><img src="https://noticeboard.co.zw/wp-content/uploads/2023/08/noticeboard.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="header__nav">
+                    <nav class="header__menu mobile-menu" >
+                       
+                    </nav>
+                    <div class="header__menu__right">
+                        
+                        <a href="#" class="primary-btn"><i class="fa fa-plus"></i>Add Listing</a>
+                        
+                       
+                        <a href="/login" class="login-btn"><i class="fa fa-user"><b style="font-size: 10px"></i></a>
+                        <a href="/register" class="login-btn"><i class="fa fa-user-plus"><b style="font-size: 10px"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
     </div>
-  </header>
+</header>
   <!-- End Header -->
   <style>
     .fixed-size {
@@ -138,23 +147,7 @@ border-radius: 8px 8px 0 0; /* Optional: for rounded corners */
  
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <video autoplay muted class="video-background" id="background-video">
-        <source src="/assets/videos/vid.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
-        <div class="row">
-            <div class="col-lg-8">
-                <h1>Welcome to <span>Bites n Vibes</span></h1>
-                <div class="btns">
-                    <a href="/login" class="btn-menu animated fadeInUp scrollto">Login</a>
-                    <a href="/register" class="btn-book animated fadeInUp scrollto">Sign Up</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section><!-- End Hero -->
+  
 
 <script>
     const videos = [
@@ -240,11 +233,17 @@ border-radius: 8px 8px 0 0; /* Optional: for rounded corners */
                   </ul>
               </div>
           </div>
+
+          
         
           <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+            <p>
+                Bars & Lounges</p>
             @foreach ($bars as $bar)
+            
+            
             <div class="col-lg-3 menu-item Bars">
-                <a href="{{ route('restaurants.show', $bar->id) }}" class="card flex-fill" style="text-decoration: none;" >
+                <a href="{{ route('restaurants.accommodation', $bar->id) }}" class="card flex-fill" style="text-decoration: none;" >
                     <img src="../storage/{{ $bar->profile_photo }}" alt="Top Bars & Lounges" class="card-img-top img-fluid fixed-size" />
         
                     <div class="card-body">
@@ -255,9 +254,13 @@ border-radius: 8px 8px 0 0; /* Optional: for rounded corners */
                 </a>
             </div>
         @endforeach
+
+       
+
         @foreach ($chilspot as $chilspots)
+       
         <div class="col-lg-3 menu-item Chill">
-            <a href="{{ route('restaurants.show', $bar->id) }}" class="card flex-fill" style="text-decoration: none;" >
+            <a href="{{ route('restaurants.accommodation', $bar->id) }}" class="card flex-fill" style="text-decoration: none;" >
                 <img src="../storage/{{ $chilspots->profile_photo }}" alt="Top Bars & Lounges" class="card-img-top img-fluid fixed-size" />
     
                 <div class="card-body">
@@ -269,9 +272,12 @@ border-radius: 8px 8px 0 0; /* Optional: for rounded corners */
         </div>
     @endforeach
 
+   
+
     @foreach ($restaurants as $restaurant)
+    
     <div class="col-lg-3 menu-item Restaurants">
-        <a href="{{ route('restaurants.show', $restaurant->id) }}" class="card flex-fill" style="text-decoration: none;" >
+        <a href="{{ route('restaurants.accommodation', $restaurant->id) }}" class="card flex-fill" style="text-decoration: none;" >
             <img src="../storage/{{ $restaurant->profile_photo }}" alt="Top Bars & Lounges" class="card-img-top img-fluid fixed-size" />
 
             <div class="card-body">
@@ -283,9 +289,12 @@ border-radius: 8px 8px 0 0; /* Optional: for rounded corners */
     </div>
 @endforeach
 
+
+
 @foreach ($fastfood as $fastfoods)
+
 <div class="col-lg-3 menu-item Fast">
-    <a href="{{ route('restaurants.show', $fastfoods->id) }}" class="card flex-fill" style="text-decoration: none;" >
+    <a href="{{ route('restaurants.accommodation', $fastfoods->id) }}" class="card flex-fill" style="text-decoration: none;" >
         <img src="../storage/{{ $fastfoods->profile_photo }}" alt="Top Bars & Lounges" class="card-img-top img-fluid fixed-size" />
 
         <div class="card-body">
@@ -373,37 +382,7 @@ border-radius: 8px 8px 0 0; /* Optional: for rounded corners */
 
 <!-- ======= Footer ======= -->
 <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          
-         
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Subscribe to recieve notifications about new listings as soon as they are listed</p>
-
-            <form action="{{ route('subscribe') }}" method="post">
-              @csrf <!-- Include CSRF token for security -->
-              <input type="email" name="email" required placeholder="Enter your email">
-              <input type="submit" value="Subscribe">
-          </form>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Bites n Vibes</span></strong>. All Rights Reserved
-      </div>
-     
-    </div>
-  </footer><!-- End Footer -->
-
+  
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -414,6 +393,17 @@ border-radius: 8px 8px 0 0; /* Optional: for rounded corners */
   <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <script src="js2/jquery-3.3.1.min.js"></script>
+  <script src="js2/bootstrap.min.js"></script>
+  <script src="js2/jquery.nice-select.min.js"></script>
+  <script src="js2/jquery-ui.min.js"></script>
+  <script src="js2/jquery.nicescroll.min.js"></script>
+  <script src="js2/jquery.barfiller.js"></script>
+  <script src="js2/jquery.magnific-popup.min.js"></script>
+  <script src="js2/jquery.slicknav.js"></script>
+  <script src="js2/owl.carousel.min.js"></script>
+  <script src="js2/main.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>

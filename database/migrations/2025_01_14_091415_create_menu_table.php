@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->foreignId('restaurant_id');
+            $table->foreignId('user_id');
             $table->string('description');
             $table->string('category');
             $table->boolean('availability');

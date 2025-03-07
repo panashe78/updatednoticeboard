@@ -54,25 +54,25 @@ class RestaurantController extends Controller
             $toprestaurants = DB::table('restaurants')
             ->where('description', 'restaurant')
             ->orderBy('views', 'desc') // Order by views in descending order
-            ->paginate(4);
+            ->paginate(10);
     
         // Fetch bars ordered by views, paginated
         $topbars = DB::table('restaurants')
             ->where('description', 'bar')
             ->orderBy('views', 'desc') // Order by views in descending order
-            ->paginate(4);
+            ->paginate(10);
     
         // Fetch fast food restaurants ordered by views, paginated
         $topfastfood = DB::table('restaurants')
             ->where('description', 'fast food restaurant')
             ->orderBy('views', 'desc') // Order by views in descending order
-            ->paginate(4);
+            ->paginate(10);
     
         // Fetch chilspots ordered by views, paginated
         $topchilspot = DB::table('restaurants')
             ->where('description', 'chilspot')
             ->orderBy('views', 'desc') // Order by views in descending order
-            ->paginate(4);
+            ->paginate(10);
     
         return view('restaurants.index', [
             'restaurants' => $restaurants,
@@ -118,15 +118,10 @@ class RestaurantController extends Controller
     $restaurant = Restaurant::create(array_merge($validatedData, ['user_id' => Auth::id()]));
 
     // Get subscribed users' email addresses
-    $subscribedUsers = User::where('subscribed', true)->pluck('email');
-
-    // Send an email to each subscribed user
-    //foreach ($subscribedUsers as $email) {
-        //Mail::to($email)->send(new NewRestaurantAdded($restaurant));
-    //}
+   
 
 
-    Mail::to('panashemwamadi78@gmail.com')->send(new NewRestaurantAdded($restaurant));
+    //Mail::to('panashemwamadi78@gmail.com')->send(new NewRestaurantAdded($restaurant));
     return redirect()->route('restaurants.index')->with('success', 'Restaurant created successfully and emails sent.');
 }
 
@@ -166,6 +161,360 @@ public function show(Restaurant $restaurant)
 
     return view('restaurants.show', compact('restaurant', 'restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
 }
+
+public function indexacco(Restaurant $restaurant)
+{
+    // Increment the view_count for the restaurant
+    $restaurant->increment('views');
+
+    // Fetch related data
+    $restaurants = Restaurant::all();
+    
+    $menus = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dessert')
+        ->get();
+    $appertizer = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'appertizer')
+        ->get();
+    $breakfast = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'breakfast')
+        ->get();
+    $dinner = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dinner')
+        ->get();
+    $supper = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'supper')
+        ->get();
+
+        $accommodation = DB::table('restaurants')
+        ->where('approval', true)
+        ->where('description','accommodation')
+        ->get();
+
+    $chef = Chef::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $testimonial = testimonial::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $event = Event::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $images = Image::with('user')->where('restaurant_id', $restaurant->id)->get();
+
+    return view('restaurants.accommodation', compact('restaurant', 'accommodation','restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
+}
+
+public function indexeve(Restaurant $restaurant)
+{
+    // Increment the view_count for the restaurant
+    $restaurant->increment('views');
+
+    // Fetch related data
+    $restaurants = Restaurant::all();
+    
+    $menus = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dessert')
+        ->get();
+    $appertizer = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'appertizer')
+        ->get();
+    $breakfast = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'breakfast')
+        ->get();
+    $dinner = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dinner')
+        ->get();
+    $supper = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'supper')
+        ->get();
+
+        $accommodation = DB::table('restaurants')
+        ->where('approval', true)
+        ->where('description','accommodation')
+        ->get();
+
+    $events = DB::table('restaurants')
+        ->where('approval', true)
+        ->where('description','event')
+        ->get();
+
+    $chef = Chef::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $testimonial = testimonial::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $event = Event::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $images = Image::with('user')->where('restaurant_id', $restaurant->id)->get();
+
+    return view('restaurants.event', compact('restaurant','events', 'accommodation','restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
+}
+
+public function indexrest(Restaurant $restaurant)
+{
+    // Increment the view_count for the restaurant
+    $restaurant->increment('views');
+
+    // Fetch related data
+    $restaurants = Restaurant::all();
+    
+    $menus = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dessert')
+        ->get();
+    $appertizer = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'appertizer')
+        ->get();
+    $breakfast = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'breakfast')
+        ->get();
+    $dinner = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dinner')
+        ->get();
+    $supper = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'supper')
+        ->get();
+
+        $accommodation = DB::table('restaurants')
+        ->where('approval', true)
+        ->where('description','accommodation')
+        ->get();
+
+        $rest = DB::table('restaurants')
+        ->where('approval', true)
+        ->where('description','restaurant')
+        ->get();
+
+    $chef = Chef::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $testimonial = testimonial::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $event = Event::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $images = Image::with('user')->where('restaurant_id', $restaurant->id)->get();
+
+    return view('restaurants.restaurant', compact('restaurant','rest', 'accommodation','restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
+}
+
+public function indexbus(Restaurant $restaurant)
+{
+    // Increment the view_count for the restaurant
+    $restaurant->increment('views');
+
+    // Fetch related data
+    $restaurants = Restaurant::all();
+    
+    $menus = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dessert')
+        ->get();
+    $appertizer = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'appertizer')
+        ->get();
+    $breakfast = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'breakfast')
+        ->get();
+    $dinner = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dinner')
+        ->get();
+    $supper = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'supper')
+        ->get();
+
+        $accommodation = DB::table('restaurants')
+        ->where('approval', true)
+        ->where('description','accommodation')
+        ->get();
+
+        $business = DB::table('restaurants')
+        ->where('approval', true)
+        ->where('description','business')
+        ->get();
+
+        
+
+    $chef = Chef::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $testimonial = testimonial::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $event = Event::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $images = Image::with('user')->where('restaurant_id', $restaurant->id)->get();
+
+    return view('restaurants.business', compact('restaurant','business', 'accommodation','restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
+}
+
+
+
+public function accommodation(Restaurant $restaurant)
+{
+    // Increment the view_count for the restaurant
+    $restaurant->increment('views');
+
+    // Fetch related data
+    $restaurants = Restaurant::all();
+    
+    $menus = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dessert')
+        ->get();
+    $appertizer = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'appertizer')
+        ->get();
+    $breakfast = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'breakfast')
+        ->get();
+    $dinner = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dinner')
+        ->get();
+    $supper = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'supper')
+        ->get();
+
+    $accommodation = DB::table('restaurants')
+                     ->where('approval', true)
+                     ->where('description','accommodation')
+                     ->get();
+
+    $chef = Chef::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $testimonial = testimonial::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $event = Event::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $images = Image::with('user')->where('restaurant_id', $restaurant->id)->get();
+
+    return view('restaurants.show-accommodation', compact('restaurant','accommodation','restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
+}
+
+
+
+
+public function business(Restaurant $restaurant)
+{
+    // Increment the view_count for the restaurant
+    $restaurant->increment('views');
+
+    // Fetch related data
+    $restaurants = Restaurant::all();
+    
+    $menus = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dessert')
+        ->get();
+    $appertizer = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'appertizer')
+        ->get();
+    $breakfast = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'breakfast')
+        ->get();
+    $dinner = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dinner')
+        ->get();
+    $supper = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'supper')
+        ->get();
+
+        $business = DB::table('restaurants')
+        ->where('approval', true)
+        ->where('description','business')
+        ->get();
+
+    $chef = Chef::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $testimonial = testimonial::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $event = Event::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $images = Image::with('user')->where('restaurant_id', $restaurant->id)->get();
+
+    return view('restaurants.show-business', compact('restaurant','business', 'restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
+}
+
+
+public function event(Restaurant $restaurant)
+{
+    // Increment the view_count for the restaurant
+    $restaurant->increment('views');
+
+    // Fetch related data
+    $restaurants = Restaurant::all();
+    
+    $menus = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dessert')
+        ->get();
+    $appertizer = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'appertizer')
+        ->get();
+    $breakfast = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'breakfast')
+        ->get();
+    $dinner = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dinner')
+        ->get();
+    $supper = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'supper')
+        ->get();
+
+    $chef = Chef::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $testimonial = testimonial::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $event = Event::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $images = Image::with('user')->where('restaurant_id', $restaurant->id)->get();
+
+    return view('restaurants.show-event', compact('restaurant', 'restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
+}
+
+public function restaurant(Restaurant $restaurant)
+{
+    // Increment the view_count for the restaurant
+    $restaurant->increment('views');
+
+    // Fetch related data
+    $restaurants = Restaurant::all();
+    
+    $menus = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dessert')
+        ->get();
+    $appertizer = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'appertizer')
+        ->get();
+    $breakfast = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'breakfast')
+        ->get();
+    $dinner = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'dinner')
+        ->get();
+    $supper = Menu::with('user')
+        ->where('restaurant_id', $restaurant->id)
+        ->where('category', 'supper')
+        ->get();
+
+    $chef = Chef::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $testimonial = testimonial::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $event = Event::with('user')->where('restaurant_id', $restaurant->id)->get();
+    $images = Image::with('user')->where('restaurant_id', $restaurant->id)->get();
+
+    return view('restaurants.show-restaurant', compact('restaurant', 'restaurants', 'testimonial', 'chef', 'event', 'images', 'menus', 'appertizer', 'breakfast', 'dinner', 'supper'));
+}
+
+
+
+
+
     public function edit(Restaurant $restaurant)
     {
         $this->authorize('update', $restaurant); // Authorize update action
@@ -255,6 +604,12 @@ public function show(Restaurant $restaurant)
             $restaurant->approval = true; // Assuming you have an 'approved' field
             $restaurant->save();
 
+            $subscribedUsers = User::where('subscribed', true)->pluck('email');
+
+            // Send an email to each subscribed user
+            foreach ($subscribedUsers as $email) {
+                Mail::to($email)->send(new NewRestaurantAdded($restaurant));
+            }
             return response()->json(['success' => true]);
         }
 
@@ -268,7 +623,10 @@ public function show(Restaurant $restaurant)
         if ($event) {
             $event->approval = true; // Assuming you have an 'approved' field
             $event->save();
+      
 
+            // Send an email to each subscribed user
+          
             return response()->json(['success' => true]);
         }
 

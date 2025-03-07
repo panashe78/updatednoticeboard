@@ -47,7 +47,7 @@
 
       
      
-       <a href="index.html" class=""><img src="../images/bites n vibes logo.png" style="height: 110px; width:110px;" alt="" class="img-fluid"></a>
+       <a href="index.html" class=""><img src="https://noticeboard.co.zw/wp-content/uploads/2023/08/noticeboard.png" style="height: 110px; width:110px;" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
