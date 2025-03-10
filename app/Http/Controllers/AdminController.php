@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\booking;
+use App\Models\Booking;
 use App\Models\Chef;
 use App\Models\Event;
 use App\Models\FAQ;
@@ -17,15 +17,14 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-
     public function userStatistics()
     {
         // Example: Count users by month
-        $userCounts = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+        $userCounts = User::selectRaw('EXTRACT(MONTH FROM created_at) as month, COUNT(*) as count')
                           ->groupBy('month')
                           ->orderBy('month')
                           ->get();
-    
+
         $totalRestaurantsCount = Restaurant::count();
         $totalEventsCount = Event::count();
         $totalUsersCount = User::count();
@@ -33,17 +32,16 @@ class AdminController extends Controller
         $totalChefsCount = Chef::count();
         $totalTestimonialsCount = Testimonial::count();
         $totalReservationsCount = Reservations::count();
-        $totalBookingsCount = booking::count();
+        $totalBookingsCount = Booking::count();
         $totalMenusCount = Menu::count();
         $firstTenUsers = User::take(10)->get();
         $totalMessages = Message::count();
         
         $restaurants = DB::table('restaurants')
-          
             ->where('approval', false)
             ->orderBy('views', 'desc') // Order by views in descending order
             ->get();
-    
+
         // Fetch all messages
         $messages = Message::with('user')->latest()->get(); // Assuming you want the latest messages with user info
     
@@ -82,7 +80,8 @@ class AdminController extends Controller
                                          ->groupBy('restaurants.name')
                                          ->get();
 
-                                         $events = Event::orderBy('event_date', 'desc')->get(); //
+        $events = Event::orderBy('event_date', 'desc')->get(); 
+        
         return view('admin.dashboard', [
             'userCounts' => $userCounts,
             'restaurantCounts' => $restaurantCounts,
@@ -103,12 +102,9 @@ class AdminController extends Controller
             'totalMenusCount' => $totalMenusCount,
             'firstTenUsers' => $firstTenUsers,
             'totalMessages' => $totalMessages,
-            'messages' => $messages, // Pass messages to the view
+            'messages' => $messages,
             'restaurants' => $restaurants,
             'events' => $events,
         ]);
     }
-
-    
-    
 }
