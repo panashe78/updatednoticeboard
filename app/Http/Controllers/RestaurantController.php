@@ -9,7 +9,7 @@ use App\Mail\NewRestaurantAdded; // Import the Mailable class
 use App\Models\Chef;
 use App\Models\Event;
 use App\Models\Image;
-use App\Models\menu;
+use App\Models\Menu;
 use App\Models\testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
