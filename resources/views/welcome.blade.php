@@ -76,6 +76,8 @@
                                     <a href="/accommodation" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Add Accommodation</a>
                                     <a href="/business" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Add Business</a>
                                     <a href="/event" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Add Event</a>
+                                    <a href="/login" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Login</a>
+                                    <a href="/register" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Register</a>
                                 </div>
                             </div>
                         
