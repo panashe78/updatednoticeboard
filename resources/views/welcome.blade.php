@@ -43,13 +43,22 @@
 
 <body>
     <!-- Page Preloder -->
-   
+    <style>
+        #mobileDropdownContent {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+    </style>
 
         
 
     <!-- Header Section Begin -->
     <header class="header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: rgb(10, 10, 124); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-        <div class="container-fluid" style="padding-top: 0px; background-image: cover; background-position: center;" > <!-- Adjust padding for content visibility -->
+        <div class="container-fluid" style="padding-top: 0; background-image: cover; background-position: center;">
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
@@ -58,16 +67,105 @@
                 </div>
                 <div class="col-lg-9 col-md-9">
                     <div class="header__nav">
-                        <nav class="header__menu mobile-menu" >
-                           
+                        <nav class="header__menu mobile-menu">
+                            <!-- Mobile Menu Button -->
+                            <div style="position: relative; display: inline-block;">
+                                
+                                <div id="mobileDropdownContent" style="color: white">
+                                    <a href="/restaurants/create" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Add Restaurant</a>
+                                    <a href="/accommodation" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Add Accommodation</a>
+                                    <a href="/business" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Add Business</a>
+                                    <a href="/event" style="color: white; padding: 12px 16px; text-decoration: none; display: block;">Add Event</a>
+                                </div>
+                            </div>
+                        
+                            <script>
+                                const mobileMenuButton = document.getElementById('mobileMenuButton');
+                                const mobileDropdownContent = document.getElementById('mobileDropdownContent');
+                        
+                                mobileMenuButton.addEventListener('click', (event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    if (mobileDropdownContent.style.display === 'block') {
+                                        mobileDropdownContent.style.display = 'none';
+                                    } else {
+                                        mobileDropdownContent.style.display = 'block';
+                                    }
+                                });
+                        
+                                window.addEventListener('click', (event) => {
+                                    if (!mobileMenuButton.contains(event.target) && !mobileDropdownContent.contains(event.target)) {
+                                        mobileDropdownContent.style.display = 'none';
+                                    }
+                                });
+                            </script>
+                            <script>
+                                // Toggle mobile dropdown menu
+                                const mobileMenuButton = document.getElementById('mobileMenuButton');
+                                const mobileDropdownContent = document.getElementById('mobileDropdownContent');
+    
+                                mobileMenuButton.addEventListener('click', (event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation(); // Prevent the click from propagating to the window
+                                    mobileDropdownContent.style.display = mobileDropdownContent.style.display === 'block' ? 'none' : 'block';
+                                });
+    
+                                // Close mobile dropdown when clicking outside
+                                window.addEventListener('click', (event) => {
+                                    if (!mobileMenuButton.contains(event.target) && !mobileDropdownContent.contains(event.target)) {
+                                        mobileDropdownContent.style.display = 'none';
+                                    }
+                                });
+                            </script>
+    
+                            <style>
+                                /* Hide mobile menu button on larger screens */
+                                @media (min-width: 769px) {
+                                    #mobileMenuButton {
+                                        display: none;
+                                    }
+                                }
+                            </style>
                         </nav>
+    
+                        <!-- Desktop Menu and Auth Buttons -->
                         <div class="header__menu__right">
-                            
-                            <a href="/restaurants/create" class="primary-btn"><i class="fa fa-plus"></i>Add Listing</a>
-                            
-                           
-                            <a href="/login" class="login-btn"><i class="fa fa-user"><b style="font-size: 10px"></i></a>
-                            <a href="/register" class="login-btn"><i class="fa fa-user-plus"><b style="font-size: 10px"></i></a>
+                            @auth
+                            <div style="position: relative; display: inline-block;">
+                                <a href="#" class="primary-btn" style="text-decoration: none; padding: 10px 15px; background-color: #007bff; color: white; border-radius: 5px; display: inline-block;">
+                                    <i class="fa fa-plus"></i> Add Listing
+                                </a>
+                                <div style="display: none; position: absolute; background-color: white; min-width: 160px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 1;" class="dropdown-content">
+                                    <a href="/accommodation" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Accommodation</a>
+                                    <a href="/event" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Event</a>
+                                    <a href="/business" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Business</a>
+                                    <a href="/restaurants/create" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Restaurant</a>
+                                </div>
+                            </div>
+    
+                            <script>
+                                // Toggle dropdown for "Add Listing"
+                                const dropdown = document.querySelector('.dropdown-content');
+                                const addButton = document.querySelector('.primary-btn');
+    
+                                addButton.addEventListener('click', (event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation(); // Prevent the click from propagating to the window
+                                    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                                });
+    
+                                // Close dropdown when clicking outside
+                                window.addEventListener('click', (event) => {
+                                    if (!addButton.contains(event.target) && !dropdown.contains(event.target)) {
+                                        dropdown.style.display = 'none';
+                                    }
+                                });
+                            </script>
+                            @endauth
+                            @guest
+                            <a href="/login" class="login-btn"><i class="fa fa-user"></i></a>
+                            <a href="/register" class="login-btn"><i class="fa fa-user-plus"></i></a>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -75,8 +173,6 @@
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
-    <!-- Header Section End -->
-
     <!-- Hero Section Begin -->
     <section class="hero set-bg" data-setbg="../img/hero/hero2.jpg" id="heroSection" style="background-image: cover; height: 100vh;">
         <div class="container">
