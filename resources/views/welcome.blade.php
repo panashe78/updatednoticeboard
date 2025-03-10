@@ -257,7 +257,7 @@
                         </div>
                         <div class="listing__item__text">
                             <div class="listing__item__text__inside">
-                                <h5>Businesses</h5>
+                                <h5><a href="/bus">Businesses</a></h5>
                               
                                 
                             </div>
@@ -280,7 +280,7 @@
                         </div>
                         <div class="listing__item__text">
                             <div class="listing__item__text__inside">
-                                <h5>Restaurants</h5>
+                                <h5><a href="/rest">Restaurants</a></h5>
                               
                                 
                             </div>
@@ -304,7 +304,7 @@
                         </div>
                         <div class="listing__item__text">
                             <div class="listing__item__text__inside">
-                                <h5>Accommodation</h5>
+                                <h5><a href="/acco">Accommodation</a></h5>
                               
                                 
                             </div>
@@ -329,7 +329,7 @@
 
                        <a href="/vibesandevents"> <div class="listing__item__text">
                             <div class="listing__item__text__inside">
-                                <h5>Events</h5>
+                                <h5><a href="/eve">Events</a></h5>
                               
                                 
                             </div>
