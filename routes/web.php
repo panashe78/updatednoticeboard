@@ -27,9 +27,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/welcome', function () {
+        return view('welcome'); // Change 'dashboard' to 'welcome'
+    })->name('welcome');
 });
 
 use App\Http\Controllers\RestaurantController;
