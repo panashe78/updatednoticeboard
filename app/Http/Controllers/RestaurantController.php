@@ -122,7 +122,7 @@ class RestaurantController extends Controller
 
 
     //Mail::to('panashemwamadi78@gmail.com')->send(new NewRestaurantAdded($restaurant));
-    return redirect()->route('restaurants.index')->with('success', 'Restaurant created successfully and emails sent.');
+    return redirect()->route('welcome')->with('success', 'Restaurant created successfully and emails sent.');
 }
 
 public function show(Restaurant $restaurant)
