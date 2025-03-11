@@ -147,18 +147,18 @@
                 </div>
     
                 <!-- Category -->
-                <div class="mb-3">
+                <div class="mb-3" hidden>
                     <label for="category" class="form-label"><i class="fas fa-tags me-2"></i>Category</label>
-                    <input type="text" name="category" class="form-control form-control-lg" placeholder="Enter category" required>
+                    <input type="text" value="category" name="category" class="form-control form-control-lg" placeholder="Enter category" required>
                 </div>
     
                 <!-- Description -->
-                <div class="mb-3">
+                <div class="mb-3" hidden>
                     <label for="description" class="form-label"><i class="fas fa-list me-2"></i>Description</label>
                     <select name="description" id="description" class="form-select form-select-lg" required>
-                        <option value="accommodation">Accommodation</option>
+                       
                         <option value="restaurant">Restaurant</option>
-                        <option value="business">businesses</option>
+                       
                     </select>
                 </div>
     
