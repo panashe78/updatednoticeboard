@@ -29,7 +29,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('dashboard');
 });
 
 use App\Http\Controllers\RestaurantController;
