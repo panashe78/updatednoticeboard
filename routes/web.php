@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\welcome;
 // Route for the search functionality
 
-Route::get('/', [welcome::class, 'index']);
+Route::get('/', [welcome::class, 'index'])->name('welcome');
 // Define a route that returns a view
 Route::get('/toppicks', function () {
     return view('dealsandoffers');
