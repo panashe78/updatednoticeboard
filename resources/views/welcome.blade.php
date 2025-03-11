@@ -761,7 +761,7 @@
                                         </div>
                                         <div class="listing__item__text">
                                             <div class="listing__item__text__inside">
-                                                <h5>{{ $restaurant->name }}</h5>
+                                                <a href="{{ route('restaurants.accommodation', $restaurant->id) }}"><h5>{{ $restaurant->name }}</h5></a>
                                                 <div class="listing__item__text__rating">
                                                     <div class="listing__item__rating__star">
                                                         <span class="icon_star"></span>
@@ -807,7 +807,7 @@
                                         </div>
                                         <div class="listing__item__text">
                                             <div class="listing__item__text__inside">
-                                                <h5>{{ $restaurant->name }}</h5>
+                                                <a href="{{ route('restaurants.accommodation', $restaurant->id) }}" ><h5>{{ $restaurant->name }}</h5></a>
                                                 <div class="listing__item__text__rating">
                                                     <div class="listing__item__rating__star">
                                                         <span class="icon_star"></span>
@@ -855,7 +855,7 @@
                                         </div>
                                         <div class="listing__item__text">
                                             <div class="listing__item__text__inside">
-                                                <h5>{{ $restaurant->name }}</h5>
+                                                <a href="{{ route('restaurants.accommodation', $restaurant->id) }}" ><h5>{{ $restaurant->name }}</h5></a>
                                                 <div class="listing__item__text__rating">
                                                     <div class="listing__item__rating__star">
                                                         <span class="icon_star"></span>
@@ -963,7 +963,7 @@
                                     </div>
                                     <div class="listing__item__text">
                                         <div class="listing__item__text__inside">
-                                            <h5>{{ $restaurant->name }}</h5>
+                                            <a href="{{ route('restaurants.restaurant', $restaurant->id) }}" ><h5>{{ $restaurant->name }}</h5></a>
                                             <div class="listing__item__text__rating">
                                                 <div class="listing__item__rating__star">
                                                     <span class="icon_star"></span>
@@ -1014,7 +1014,7 @@
                                         </div>
                                         <div class="listing__item__text">
                                             <div class="listing__item__text__inside">
-                                                <h5>{{ $restaurant->name }}</h5>
+                                                <a href="{{ route('restaurants.restaurant', $restaurant->id) }}" ><h5>{{ $restaurant->name }}</h5></a>
                                                 <div class="listing__item__text__rating">
                                                     <div class="listing__item__rating__star">
                                                         <span class="icon_star"></span>
@@ -1060,7 +1060,7 @@
                                         </div>
                                         <div class="listing__item__text">
                                             <div class="listing__item__text__inside">
-                                                <h5>{{ $restaurant->name }}</h5>
+                                                <a href="{{ route('restaurants.restaurant', $restaurant->id) }}" ><h5>{{ $restaurant->name }}</h5></a>
                                                 <div class="listing__item__text__rating">
                                                     <div class="listing__item__rating__star">
                                                         <span class="icon_star"></span>
@@ -1110,7 +1110,7 @@
                                         </div>
                                         <div class="listing__item__text">
                                             <div class="listing__item__text__inside">
-                                                <h5>{{ $restaurant->name }}</h5>
+                                                <a href="{{ route('restaurants.restaurant', $restaurant->id) }}" ><h5>{{ $restaurant->name }}</h5></a>
                                                 <div class="listing__item__text__rating">
                                                     <div class="listing__item__rating__star">
                                                         <span class="icon_star"></span>
