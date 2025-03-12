@@ -29,6 +29,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
       <!-- font awesome css -->
       <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+           <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
    </head>
    <body style="background-color: black">
       <!-- header section start -->
@@ -43,7 +44,9 @@
          <div class="container" >
             <div class="row">
                <div class="col-sm-12">
-                  <h1 class="blog_taital">My <span class="blog_taital_1">Dashboard</span></h1>
+                  <h1 class="blog_taital">My <span class="blog_taital_1"><div class="container mt-5">
+    <button type="button" class="btn btn-primary"><a href="/">Get Started</a></button>
+</div></span></h1>
                   
                </div>
             </div>
@@ -305,5 +308,8 @@
             });
          });
       </script>
+          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
    </body>
 </html>
