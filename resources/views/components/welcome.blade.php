@@ -65,6 +65,7 @@
                 ?>
          <div class="blog_section_2" >
             <div class="container">
+                <a href="/"> <button type="button" class="btn btn-danger">Get Started</button></a>
                <div class="row">
                   <div class="col-md-4">
                      <div class="blog_box card">
