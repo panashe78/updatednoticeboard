@@ -45,8 +45,8 @@ return [
                 'address' => env('MAIL_FROM_ADDRESS', 'panashemwamadi78@gmail.com'),
                 'name' => env('MAIL_FROM_NAME', 'Noticeboard'),
             ],
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => 'panashemwamadi78@gmail.com',
+            'password' => 'lkqvfzxrehgvikhs',
             'encryption' => env('MAIL_ENCRYPTION', 'tls'), // Recommended encryption
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
