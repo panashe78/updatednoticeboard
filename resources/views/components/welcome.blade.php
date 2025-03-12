@@ -45,7 +45,7 @@
             <div class="row">
                <div class="col-sm-12">
                   <h1 class="blog_taital">My <span class="blog_taital_1"><div class="container mt-5">
-    <button type="button" class="btn btn-primary"><a href="/">Get Started</a></button>
+   <a href="/"> <button type="button" class="btn btn-danger">Get Started</button></a>
 </div></span></h1>
                   
                </div>
